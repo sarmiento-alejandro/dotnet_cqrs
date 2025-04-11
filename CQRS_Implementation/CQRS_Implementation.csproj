@@ -25,7 +25,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\CQRS_Lib\CQRS_Lib.csproj" />
-      <ProjectReference Include="..\Utilities\Utilities.csproj" />
+      <ProjectReference Include="..\CQRS_Utilities\CQRS_Utilities.csproj" />
     </ItemGroup>
 
     <ItemGroup>

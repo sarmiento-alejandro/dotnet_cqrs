@@ -2,7 +2,7 @@ using CQRS_Implementation.Domain.Entities;
 using CQRS_Implementation.Domain.Repositories.CommandInterfaces;
 using CQRS_Implementation.Domain.Services;
 using CQRS_Lib.BaseInterfaces;
-using Utilities.PasswordHasherUtility;
+using CQRS_Utilities.PasswordHasherUtility;
 
 namespace CQRS_Implementation.Features.Users.Commands.CreateUser;
 
@@ -33,7 +33,7 @@ public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand, Guid>
             Id = Guid.NewGuid(),
             Name = command.Name,
             Email = command.Email,
-            PasswordHash = PasswordHasher.HashPassword(command.Password), // Requiere el paquete BCrypt.Net-Next
+            PasswordHash = PasswordHasher.HashPassword(command.Password), 
             CreatedAt = DateTime.UtcNow
         };
             

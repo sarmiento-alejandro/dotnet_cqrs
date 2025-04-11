@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS_Implementation", "CQRS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS_Lib", "CQRS_Lib\CQRS_Lib.csproj", "{AEB50CEB-87F8-31D5-86FD-0F25109B761D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{D939722D-5745-4F51-9CA9-583CBB341469}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS_Utilities", "CQRS_Utilities\CQRS_Utilities.csproj", "{D939722D-5745-4F51-9CA9-583CBB341469}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
