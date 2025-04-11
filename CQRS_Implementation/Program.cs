@@ -1,6 +1,8 @@
+using CQRS_Implementation.Domain.Repositories.Queries;
 using CQRS_Implementation.Infrastructure.Data.MariaDb;
 using CQRS_Implementation.Infrastructure.Data.MongoDB;
 using CQRS_Implementation.Infrastructure.Data.MongoDB.Configurations;
+using CQRS_Implementation.Infrastructure.Repositories.Queries;
 using CQRS_Lib;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +26,7 @@ builder.Services.Configure<MongoDbSettings>(
     builder.Configuration.GetSection("MongoDbSettings"));
 
 builder.Services.AddSingleton<IMongoDbContext, MongoDbContext>();
+builder.Services.AddScoped<IUserQueryRepository, UserQueryRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
