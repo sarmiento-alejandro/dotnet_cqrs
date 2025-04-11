@@ -8,7 +8,7 @@ public class MongoDbSettings
     public CollectionNames CollectionNames { get; set; }
 }
 
-public abstract class CollectionNames
+public class CollectionNames
 {
     public string Users { get; set; }
 }

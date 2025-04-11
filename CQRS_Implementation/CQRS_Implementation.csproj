@@ -8,9 +8,19 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="8.1.1" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="8.1.1" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.1" />
+
+        <PackageReference Include="MongoDB.Driver" Version="3.3.0" />
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0-preview.3.efcore.9.0.0" />
+
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.4" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.4" />
     </ItemGroup>
 
     <ItemGroup>
@@ -26,6 +36,7 @@
       <Folder Include="DTOs\" />
       <Folder Include="Features\Users\Commands\CreateUser\" />
       <Folder Include="Features\Users\Queries\GetUserById\" />
+      <Folder Include="Infrastructure\Data\MariaDb\Migrations\" />
       <Folder Include="Infrastructure\Repositories\Commands\" />
       <Folder Include="Infrastructure\Repositories\Queries\" />
     </ItemGroup>
