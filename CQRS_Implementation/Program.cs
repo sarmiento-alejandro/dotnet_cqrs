@@ -1,3 +1,4 @@
+using System.Text;
 using CQRS_Implementation.Domain.Repositories.CommandInterfaces;
 using CQRS_Implementation.Domain.Repositories.Queries;
 using CQRS_Implementation.Domain.Services;
@@ -8,7 +9,9 @@ using CQRS_Implementation.Infrastructure.Repositories.Commands;
 using CQRS_Implementation.Infrastructure.Repositories.Queries;
 using CQRS_Implementation.Infrastructure.Services;
 using CQRS_Lib;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,10 +38,38 @@ builder.Services.AddSingleton<IMongoDbContext, MongoDbContext>();
 builder.Services.AddScoped<IUserQueryRepository, UserQueryRepository>();
 
 builder.Services.AddScoped<IUserCommandRepository, UserCommandRepository>();
+builder.Services.AddScoped<IAuthQueryRepository, AuthQueryRepository>();
 
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]!);
+
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidateAudience = true,
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero
+        };
+    });
+
+// Registrar servicio JWT
+builder.Services.AddScoped<IJwtService, JwtService>();
 
 
 var app = builder.Build();
@@ -51,6 +82,7 @@ if (app.Environment.IsDevelopment())
     ApplyMigrations(app);
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

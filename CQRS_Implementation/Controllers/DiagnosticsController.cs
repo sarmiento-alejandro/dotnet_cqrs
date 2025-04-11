@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CQRS_Implementation.Controllers;
 
+[ApiController]
+[Route("api/[controller]")]
 public class DiagnosticsController(MariaDbContext mariaDbContext, IMongoDbContext mongoDbContext)
    : ControllerBase
 {

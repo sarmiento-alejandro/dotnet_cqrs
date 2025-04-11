@@ -5,15 +5,10 @@ using MongoDB.Driver;
 
 namespace CQRS_Implementation.Infrastructure.Repositories.Queries;
 
-public class UserQueryRepository : IUserQueryRepository
-    {
-        private readonly IMongoCollection<UserReadModel> _collection;
-        
-        public UserQueryRepository(IMongoDbContext context)
-        {
-            _collection = context.GetCollection<UserReadModel>(context.Settings.CollectionNames.Users);
-        }
-        
+public class UserQueryRepository(IMongoDbContext context) : IUserQueryRepository
+{
+        private readonly IMongoCollection<UserReadModel> _collection = context.GetCollection<UserReadModel>(context.Settings.CollectionNames.Users);
+
         public async Task<UserReadModel> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _collection.Find(u => u.Id == id).FirstOrDefaultAsync(cancellationToken);
