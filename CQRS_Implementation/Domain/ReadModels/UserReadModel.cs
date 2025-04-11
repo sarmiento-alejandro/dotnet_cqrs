@@ -1,3 +1,4 @@
+using CQRS_Implementation.DTOs;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -17,6 +18,28 @@ public class UserReadModel
     // Campos adicionales para consultas optimizadas
     public List<string> Roles { get; set; } = new List<string>();
     public AddressReadModel Address { get; set; }
+    
+    
+    public static UserDto MapToDto(UserReadModel user)
+    {
+        return new UserDto
+        {
+            Id = user.Id,
+            Name = user.Name,
+            Email = user.Email,
+            CreatedAt = user.CreatedAt,
+            UpdatedAt = user.UpdatedAt,
+            Roles = user.Roles,
+            Address = user.Address != null 
+                ? new AddressDto
+                {
+                    Street = user.Address.Street,
+                    City = user.Address.City,
+                    ZipCode = user.Address.ZipCode
+                }
+                : null
+        };
+    }
 }
 
 public class AddressReadModel

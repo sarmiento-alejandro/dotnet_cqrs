@@ -25,6 +25,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\CQRS_Lib\CQRS_Lib.csproj" />
+      <ProjectReference Include="..\Utilities\Utilities.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -33,9 +34,6 @@
       <Folder Include="Domain\ReadModels\" />
       <Folder Include="Domain\Repositories\CommandInterfaces\" />
       <Folder Include="Domain\Repositories\QueryInterfaces\" />
-      <Folder Include="DTOs\" />
-      <Folder Include="Features\Users\Commands\CreateUser\" />
-      <Folder Include="Features\Users\Queries\GetUserById\" />
       <Folder Include="Infrastructure\Data\MariaDb\Migrations\" />
       <Folder Include="Infrastructure\Repositories\Commands\" />
       <Folder Include="Infrastructure\Repositories\Queries\" />
