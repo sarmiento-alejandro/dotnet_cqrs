@@ -400,3 +400,6 @@ FodyWeavers.xsd
 *.sln.iml
 .idea/.idea.Github_sarmiento_alejandro/.idea/indexLayout.xml
 .idea/.idea.Github_sarmiento_alejandro/.idea/vcs.xml
+/.idea
+.DS_Store
+.DS_Store
